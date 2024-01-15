@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="EdJzKw" name="basicDistortion" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
+              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
+              companyName="Home Made">
   <MAINGROUP id="Fed2CU" name="basicDistortion">
     <GROUP id="{5E899DEE-AA3B-E984-AF3B-6ED8FBED1BE3}" name="Source">
       <FILE id="dwDMJD" name="PluginProcessor.cpp" compile="1" resource="0"

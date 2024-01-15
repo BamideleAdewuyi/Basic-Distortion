@@ -153,8 +153,60 @@ void BasicDistortionAudioProcessor::processBlock (juce::AudioBuffer<float>& buff
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
         auto* channelData = buffer.getWritePointer (channel);
-
-        // ..do something to the data...
+        
+        for (int i = 0; i < buffer.getNumSamples(); ++i)
+        {
+            auto input = channelData[i];
+            auto cleanOut = channelData[i];
+            
+            if (menuChoice == 1)
+                // Hard clip
+            {
+                if (input > thresh)
+                {
+                    input = thresh;
+                }
+                
+                else if (input < -thresh)
+                {
+                    input = -thresh;
+                }
+                else
+                {
+                    input = input;
+                }
+            }
+            
+            if (menuChoice == 2)
+                // Soft clip
+            {
+                if (input > thresh)
+                {
+                    input = 1.0f  -expf(-input);
+                }
+                else
+                {
+                    input = 1.0f + expf(input);
+                }
+            }
+            
+            if (menuChoice == 3)
+                // Half-Wave Rectifier
+            {
+                if (input < thresh)
+                {
+                    input = input;
+                }
+                
+                else
+                {
+                    input = 0;
+                }
+            }
+            
+            channelData[i] = ((1 - mix) * cleanOut) + (mix * input);
+        }
+        
     }
 }
 
